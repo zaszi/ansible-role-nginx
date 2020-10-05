@@ -16,7 +16,7 @@
 - name: Generate Diffie-Hellman parameter
   shell:
     cmd: openssl dhparam -out dhparams.pem 4096
-    creates: /etc/nginx/dhparams.pem
+    creates: /etc/nginx/dhparam.pem
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/conf.d exists
