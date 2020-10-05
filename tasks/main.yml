@@ -19,6 +19,15 @@
     creates: /etc/nginx/dhparams.pem
   notify: "reload nginx"
 
+- name: Ensure /etc/nginx/conf.d exists
+  file:
+    path: /etc/nginx/conf.d
+    owner: root
+    group: root
+    mode: 0755
+    state: directory
+  notify: "reload nginx"
+
 - name: Ensure /etc/nginx/sites-available exists
   file:
     path: /etc/nginx/sites-available
