@@ -6,7 +6,7 @@
 
 - name: Install Nginx configuration file
   copy:
-    src: nginx/nginx.conf
+    src: nginx.conf
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root
@@ -16,7 +16,7 @@
 - name: Generate Diffie-Hellman parameter
   shell:
     cmd: openssl dhparam -out dhparams.pem 4096
-    creates: /etc/nging/dhparam.pem
+    creates: /etc/nginx/dhparams.pem
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/sites-available exists
