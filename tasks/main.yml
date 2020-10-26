@@ -1,6 +1,6 @@
 ---
 - name: Install Nginx
-  pacman:
+  community.general.pacman:
     name: nginx-mainline
     state: present
 
