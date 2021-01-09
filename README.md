@@ -26,4 +26,4 @@ None.
 
 ## License
 
-Ansible-role-nginx is licensed under the [MIT license](https://github.com/zaszi/ansible-role-nginx/blob/master/LICENSE).
+Ansible-role-nginx is licensed under the [MIT license](LICENSE).
