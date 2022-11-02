@@ -5,7 +5,7 @@
     state: present
 
 - name: Install Nginx configuration file
-  copy:
+  ansible.builtin.copy:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
     owner: root
@@ -14,13 +14,13 @@
   notify: "reload nginx"
 
 - name: Generate Diffie-Hellman parameter
-  shell:
+  ansible.builtin.command:
     cmd: openssl dhparam -out dhparams.pem 4096
     creates: /etc/nginx/dhparam.pem
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/conf.d exists
-  file:
+  ansible.builtin.file:
     path: /etc/nginx/conf.d
     owner: root
     group: root
@@ -29,7 +29,7 @@
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/sites-available exists
-  file:
+  ansible.builtin.file:
     path: /etc/nginx/sites-available
     owner: root
     group: root
@@ -38,7 +38,7 @@
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/sites-enabled exists
-  file:
+  ansible.builtin.file:
     path: /etc/nginx/sites-enabled
     owner: root
     group: root
@@ -47,7 +47,7 @@
   notify: "reload nginx"
 
 - name: Install Nginx virtual hosts
-  copy:
+  ansible.builtin.copy:
     src: "{{ vhost_location }}/{{ item }}"
     dest: /etc/nginx/sites-available/
     owner: root
@@ -56,7 +56,7 @@
   loop: "{{ vhosts }}"
 
 - name: Enable nginx service
-  systemd:
+  ansible.builtin.systemd:
     name: nginx
     enabled: true
     state: started
