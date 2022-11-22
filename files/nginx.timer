@@ -1,0 +1,9 @@
+[Unit]
+Description=Delays nginx to avoid race condition with DNS
+
+[Timer]
+OnBootSec=1min
+Unit=nginx.service
+
+[Install]
+WantedBy=basic.target

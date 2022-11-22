@@ -55,9 +55,17 @@
     mode: 0644
   loop: "{{ vhosts }}"
 
-- name: Enable nginx service
+- name: Install Nginx service timer
+  ansible.builtin.copy:
+    src: nginx.timer
+    dest: /etc/systemd/system/nginx.timer
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable nginx service timer
   ansible.builtin.systemd:
-    name: nginx
+    name: nginx.timer
     enabled: true
     state: started
     daemon_reload: true
