@@ -6,8 +6,8 @@
 
 - name: Generate Diffie-Hellman parameters
   ansible.builtin.command:
-    cmd: openssl dhparam -out dhparams.pem 4096
-    creates: /etc/nginx/dhparam.pem
+    cmd: openssl dhparam -out /etc/nginx/dhparams.pem 4096
+    creates: /etc/nginx/dhparams.pem
   notify: "reload nginx"
 
 - name: Ensure /etc/nginx/conf.d exists
