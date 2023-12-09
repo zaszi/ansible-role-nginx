@@ -15,7 +15,7 @@
     path: /etc/nginx/conf.d
     owner: root
     group: root
-    mode: 0755
+    mode: '755'
     state: directory
   notify: "reload nginx"
 
@@ -24,7 +24,7 @@
     path: /etc/nginx/sites-available
     owner: root
     group: root
-    mode: 0755
+    mode: '755'
     state: directory
   notify: "reload nginx"
 
@@ -33,7 +33,7 @@
     path: /etc/nginx/sites-enabled
     owner: root
     group: root
-    mode: 0755
+    mode: '755'
     state: directory
   notify: "reload nginx"
 
@@ -43,7 +43,7 @@
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root
-    mode: 0644
+    mode: '644'
   notify: "reload nginx"
 
 - name: Install MIME types
@@ -52,7 +52,7 @@
     dest: /etc/nginx/mime.types
     owner: root
     group: root
-    mode: 0644
+    mode: '644'
   notify: "reload nginx"
 
 - name: Install additional configs
@@ -61,7 +61,7 @@
     dest: /etc/nginx/conf.d/{{ item | basename }}
     owner: root
     group: root
-    mode: 0644
+    mode: '644'
   loop: "{{ lookup('fileglob', 'files/conf.d/*', wantlist=True) }}"
 
 - name: Install nginx virtual hosts
@@ -70,7 +70,7 @@
     dest: /etc/nginx/sites-available/
     owner: root
     group: root
-    mode: 0644
+    mode: '644'
   loop: "{{ vhosts }}"
 
 - name: Install nginx service timer
@@ -79,7 +79,7 @@
     dest: /etc/systemd/system/nginx.timer
     owner: root
     group: root
-    mode: 0644
+    mode: '644'
 
 - name: Enable nginx service timer
   ansible.builtin.systemd:
